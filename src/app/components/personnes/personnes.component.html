@@ -1,0 +1,21 @@
+<form [formGroup]="personneForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput type="email" placeholder="email" formControlName="email"/>
+        <mat-error *ngIf="personneForm.controls.email.hasError('required')">
+            email requis
+        </mat-error>
+        <mat-error *ngIf="personneForm.controls.email.hasError('email')">
+            Veuillez entrer une adresse email valide
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="nom" formControlName="nom"/>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="prenom" formControlName="prenom"/>
+    </mat-form-field>
+    <button mat-button color="primary" type="submit" [disabled]="!personneForm.valid">Save</button>
+</form>
+<div *ngFor="let personne of personnes">
+    <app-personne [personne]="personne" (onDelete)="supprimer($event)"></app-personne>
+</div>

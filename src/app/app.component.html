@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+        <span>My Application</span>
+        <span class="example-fill-remaining-space"></span>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>more_vert</mat-icon>
+        </button>
+</mat-toolbar>
+<mat-menu #appMenu="matMenu">
+        <button mat-menu-item> Settings </button>
+        <button mat-menu-item> Help </button>
+</mat-menu>
+<router-outlet></router-outlet> 
