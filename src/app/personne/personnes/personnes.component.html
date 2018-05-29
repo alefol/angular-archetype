@@ -1,21 +1,28 @@
 <form [formGroup]="personneForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
         <input matInput type="email" placeholder="email" formControlName="email"/>
-        <mat-error *ngIf="personneForm.controls.email.hasError('required')">
+        <mat-error *ngIf="mailCtrl.hasError('required')">
             email requis
         </mat-error>
-        <mat-error *ngIf="personneForm.controls.email.hasError('email')">
+        <mat-error *ngIf="mailCtrl.hasError('email')">
             Veuillez entrer une adresse email valide
+        </mat-error>
+        <mat-error *ngIf="mailCtrl.hasError('domaineError')">
+          Nom de domaine invalide
         </mat-error>
     </mat-form-field>
     <mat-form-field>
         <input matInput type="text" placeholder="nom" formControlName="nom"/>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" placeholder="prenom" formControlName="prenom"/>
+        <input appInputColor="red" matInput type="text" placeholder="prenom" formControlName="prenom"/>
     </mat-form-field>
     <button mat-button color="primary" type="submit" [disabled]="!personneForm.valid">Save</button>
+    <input appInputColor="red" placeholder="ok"/>
 </form>
-<div *ngFor="let personne of personnes">
+<mat-form-field>
+  <input matInput type="text" placeholder="recherche" [(ngModel)]="inputSearch"/>
+</mat-form-field>
+<div *ngFor="let personne of personnes | personneImpure:inputSearch">
     <app-personne [personne]="personne" (onDelete)="supprimer($event)"></app-personne>
 </div>

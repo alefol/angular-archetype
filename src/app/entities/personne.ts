@@ -1,13 +1,38 @@
-export class PersonneEntity {
+export interface PersonneInterface {
+  id: number;
+  email: string;
+  nom: string;
+  prenom: string;
+  password: string;
+}
+
+
+export class PersonneEntity implements  PersonneInterface{
     id: number;
     email: string;
     nom: string;
     prenom: string;
     password: string;
 
-    public constructor(email: string, nom: string, prenom: string){
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
+    public constructor(id?: number, email?: string, nom?: string, prenom?: string){
+      this.id = id;
+        this.email = email || '';
+        this.nom = nom || '';
+        this.prenom = prenom || '';
     }
 }
+
+export function personnesFactory(personnes: PersonneInterface[]){
+  const out: PersonneEntity[] = [];
+  for (const personne of personnes) {
+    out.push(new PersonneEntity(personne.id, personne.email, personne.nom, personne.prenom));
+  }
+  return out;
+}
+
+export function personneFactory(personne: PersonneInterface){
+  let out: PersonneEntity;
+  out = new PersonneEntity(personne.id, personne.email, personne.nom, personne.prenom);
+  return out;
+}
+

@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-        <span>My Application</span>
+        <div [routerLink]="['']">My Application</div>
+        <button class="toolbar-link" mat-icon-button routerLink="/personnes">personnes</button>
         <span class="example-fill-remaining-space"></span>
         <button mat-icon-button [matMenuTriggerFor]="appMenu">
                 <mat-icon>more_vert</mat-icon>
         </button>
 </mat-toolbar>
 <mat-menu #appMenu="matMenu">
-        <button mat-menu-item> Settings </button>
+        <button mat-menu-item [routerLink]="['settings']" > Settings </button>
         <button mat-menu-item> Help </button>
 </mat-menu>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>

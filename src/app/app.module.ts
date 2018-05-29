@@ -1,36 +1,61 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {InjectionToken, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
-import { PersonneComponent } from './components/personne/personne.component';
-import { PersonnesComponent } from './components/personnes/personnes.component';
 import { PersonneService } from './services/personne.service';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material'
+import {
+  MatButtonModule,
+  MatToolbarModule,
+  MatMenuModule,
+  MatIconModule,
+  MatFormField,
+  MatInputModule, MatFormFieldModule, MatCheckboxModule
+} from '@angular/material'
+import { PersonneInterceptor } from "./interceptors/personne.interceptor";
+import { PersonneModule } from "./personne/personne.module";
+import { HomeComponent } from './components/home/home.component';
+import {RouterModule, Routes} from "@angular/router";
+import {InputColor2Directive, InputColorDirective} from './directives/input-color.directive';
+import { SettingsComponent } from './components/settings/settings.component';
+import {FormsModule} from "@angular/forms";
+import { AddRequiredDirective } from './directives/add-required.directive';
+import {environment} from "../environments/environment";
 
+const ROUTES: Routes = [
+  { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
+  { path: '', component: HomeComponent, pathMatch: 'full' }
+];
+
+export const isProdToken = new InjectionToken('is_prod', {
+  providedIn: 'root',
+  factory: () => environment.production
+});
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonneComponent,
-    PersonnesComponent
+    HomeComponent,
+    SettingsComponent,
+    AddRequiredDirective,
+    InputColor2Directive
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
     MatIconModule
   ],
-  providers: [PersonneService],
+  providers: [PersonneService, {provide: HTTP_INTERCEPTORS, useClass: PersonneInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 

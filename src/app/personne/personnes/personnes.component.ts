@@ -1,0 +1,100 @@
+import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import { PersonneService } from 'src/app/services/personne.service';
+import { PersonneEntity } from 'src/app/entities/personne';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {PersonneComponent} from "../personne/personne.component";
+
+
+function inputMailValidator(control: FormControl): any {
+  const value = control.value || '';
+  if(!value.includes('acii.fr')){
+    return {domaineError: true};
+  }
+}
+
+@Component({
+  selector: 'app-personnes',
+  templateUrl: './personnes.component.html',
+  styleUrls: ['./personnes.component.scss']
+})
+export class PersonnesComponent implements OnInit {
+
+  personnes: PersonneEntity[];
+
+  personneForm : FormGroup;
+
+  personneACreer: PersonneEntity;
+
+  inputSearch: string;
+
+  @ViewChild(PersonneComponent)
+  appPersonneComponent: PersonneComponent;
+
+
+  @ViewChildren(PersonneComponent)
+  appPersonneComponents: PersonneComponent[];
+
+  nomCtrl: FormControl;
+  prenomCtrl: FormControl;
+  mailCtrl: FormControl;
+
+
+  constructor(private personneService: PersonneService, private fb: FormBuilder) {
+   }
+
+  ngOnInit() {
+    this.personneACreer = new PersonneEntity();
+    this.inputSearch = '';
+
+    this.nomCtrl = new FormControl(this.personneACreer.nom);
+    this.prenomCtrl = new FormControl(this.personneACreer.prenom);
+    this.mailCtrl = new FormControl(this.personneACreer.email, [Validators.required, Validators.email, inputMailValidator]);
+
+    this.personneForm = this.fb.group({
+      nom: this.nomCtrl,
+      prenom: this.prenomCtrl,
+      email: this.mailCtrl
+    });
+
+    this.nomCtrl.valueChanges
+      .subscribe(value => this.personneACreer.nom = value);
+    this.prenomCtrl.valueChanges
+      .subscribe(value => this.personneACreer.prenom = value);
+    this.mailCtrl.valueChanges
+      .subscribe(value => this.personneACreer.email = value);
+
+    this.personneService.getAllPersonnes().subscribe(
+      personnes => {
+        this.personnes = personnes;
+      },
+      error => {
+        console.error(error)
+      }
+    )
+  }
+
+  onSubmit(){
+    console.log(this.personneACreer);
+
+    this.personneService.createPersonne(this.personneACreer).subscribe(
+      id => {
+        console.log(`persone créée avec l'id suivant: ${id}`);
+        this.personneACreer.id = id;
+        this.personnes.push(this.personneACreer);
+      }
+    );
+
+    console.log('this.appPersonneComponent = ', this.appPersonneComponent);
+    console.log('this.appPersonneComponents = ', this.appPersonneComponents);
+  }
+
+
+  supprimer(event){
+    console.log("suppression");
+    let number = this.personnes.indexOf(event);
+    if(number >= 0){
+      this.personnes.splice(number, 1);
+    }
+  }
+
+}
