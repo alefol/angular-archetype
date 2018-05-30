@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
-import { PersonneService } from 'src/app/services/personne.service';
 import { PersonneEntity } from 'src/app/entities/personne';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {PersonneComponent} from "../personne/personne.component";
+import { PersonneService } from '../services/personne/personne.service';
 
 
 function inputMailValidator(control: FormControl): any {
@@ -91,10 +91,13 @@ export class PersonnesComponent implements OnInit {
 
   supprimer(event){
     console.log("suppression");
-    let number = this.personnes.indexOf(event);
-    if(number >= 0){
-      this.personnes.splice(number, 1);
-    }
+    let id = this.personnes.indexOf(event);
+    this.personneService.deleteById(event.id).subscribe(
+      () => {
+        if(id >= 0){
+          this.personnes.splice(id, 1);
+        }
+    });
   }
 
 }

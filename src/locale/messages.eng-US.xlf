@@ -1,0 +1,10 @@
+<trans-unit id="bienvenue" datatype="html">
+  <source>Bienvenue !</source>
+  <target>welcome !</target>
+  <note priority="1" from="description">ok</note>
+  <note priority="1" from="meaning">User welcome</note>
+</trans-unit>
+<trans-unit id="messageAccueil" datatype="html">
+  <source>Ce site a pour but de servir de base pour de futures applications Angular</source>
+  <target>This website purpose is to be used as a base for angular applications</target>
+</trans-unit>

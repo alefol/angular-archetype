@@ -2,8 +2,9 @@ import {TestBed, inject, async} from '@angular/core/testing';
 
 import { PersonneService } from './personne.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {PersonneEntity, PersonneInterface} from "../entities/personne";
-import {environment} from "../../environments/environment";
+import { PersonneInterface, PersonneEntity } from '../../../entities/personne';
+import { environment } from '../../../../environments/environment';
+
 
 describe('PersonneService', () => {
   let service: PersonneService;

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {InjectionToken, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
-import { PersonneService } from './services/personne.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,7 +10,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatFormField,
-  MatInputModule, MatFormFieldModule, MatCheckboxModule
+  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSidenavModule
 } from '@angular/material'
 import { PersonneInterceptor } from "./interceptors/personne.interceptor";
 import { PersonneModule } from "./personne/personne.module";
@@ -22,6 +21,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import {FormsModule} from "@angular/forms";
 import { AddRequiredDirective } from './directives/add-required.directive';
 import {environment} from "../environments/environment";
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const ROUTES: Routes = [
   { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
@@ -39,7 +39,8 @@ export const isProdToken = new InjectionToken('is_prod', {
     HomeComponent,
     SettingsComponent,
     AddRequiredDirective,
-    InputColor2Directive
+    InputColor2Directive,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -53,9 +54,9 @@ export const isProdToken = new InjectionToken('is_prod', {
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule
   ],
-  providers: [PersonneService, {provide: HTTP_INTERCEPTORS, useClass: PersonneInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 

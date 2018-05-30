@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PersonneEntity} from "../../entities/personne";
-import {PersonneService} from "../../services/personne.service";
 import {ActivatedRoute} from "@angular/router";
 import {map, switchMap, } from 'rxjs/operators'
+import { PersonneService } from '../services/personne/personne.service';
 
 @Component({
   selector: 'app-personne-details',

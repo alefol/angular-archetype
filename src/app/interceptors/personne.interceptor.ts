@@ -15,7 +15,7 @@ export class PersonneInterceptor implements HttpInterceptor {
     if (req.url.includes('/personnes')) {
       const request = req.clone({
         setHeaders: {
-          'content-type': 'application/json'
+          'test': 'plop'
         }
       });
       return next.handle(request)

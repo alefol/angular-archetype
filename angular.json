@@ -49,6 +49,12 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "eng-US": {
+              "aot": true,
+              "i18nFile": "src/locale/messages.eng-US.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "eng"
             }
           }
         },

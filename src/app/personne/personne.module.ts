@@ -17,6 +17,8 @@ import {PersonnePipe, PersonnePipeImpure} from './pipes/personne.pipe';
 import {InputColorDirective} from "../directives/input-color.directive";
 import {CommonModule} from "@angular/common";
 import { PersonneDetailsComponent } from './personne-details/personne-details.component';
+import { PersonneService } from "./services/personne/personne.service";
+import { PersonneResolver } from "./resolvers/personne.resolver";
 
 @NgModule({
   declarations: [
@@ -36,6 +38,10 @@ import { PersonneDetailsComponent } from './personne-details/personne-details.co
     MatButtonModule,
     MatIconModule,
     PersonneRoutingModule
+  ],
+  providers: [
+    PersonneService,
+    PersonneResolver
   ]
 
 })

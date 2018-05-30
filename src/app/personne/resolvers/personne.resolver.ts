@@ -1,8 +1,8 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {PersonneEntity} from "../../entities/personne";
 import {Observable} from "rxjs/internal/Observable";
-import {PersonneService} from "../../services/personne.service";
 import {Injectable} from "@angular/core";
+import { PersonneService } from "../services/personne/personne.service";
 
 @Injectable()
 export class PersonneResolver implements Resolve<PersonneEntity> {
