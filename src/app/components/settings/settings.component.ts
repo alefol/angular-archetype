@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
   }
 
   saveUser(): void {
-    this.userService.setUser(this.user.nom, this.user.isAdmin)
+    this.userService.setUser(this.user.nom, '' , this.user.isAdmin)
       .subscribe(
         res => console.log('Save user succes', res)
       )

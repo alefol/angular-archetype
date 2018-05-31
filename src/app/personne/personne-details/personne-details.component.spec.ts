@@ -3,8 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PersonneDetailsComponent } from './personne-details.component';
 import {PersonneComponent} from "../personne/personne.component";
 import {RouterTestingModule} from "@angular/router/testing";
-import {PersonneService} from "../../services/personne.service";
 import { HttpClientTestingModule} from "@angular/common/http/testing";
+import { PersonneService } from '../services/personne/personne.service';
 
 describe('PersonneDetailsComponent', () => {
   let component: PersonneDetailsComponent;

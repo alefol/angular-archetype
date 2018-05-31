@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit, OnDestroy{
   title = 'app';
   subscriptions: Subscription[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userservice: UserService) {
 
   }
 
@@ -34,5 +35,18 @@ export class AppComponent implements OnInit, OnDestroy{
     for(let subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
+  }
+
+  onLogout(){
+    console.log("demande de déconnexion");
+    this.userservice.disconnect().subscribe(
+      () => {
+        this.router.navigate(['/login'])      
+      },
+      err => {
+        console.error("échec de la déconnexion")
+      }
+
+    );
   }
 }

@@ -63,7 +63,7 @@ export class PersonnesComponent implements OnInit {
     this.mailCtrl.valueChanges
       .subscribe(value => this.personneACreer.email = value);
 
-    this.personneService.getAllPersonnes().subscribe(
+    this.personneService.getAll().subscribe(
       personnes => {
         this.personnes = personnes;
       },
@@ -76,7 +76,7 @@ export class PersonnesComponent implements OnInit {
   onSubmit(){
     console.log(this.personneACreer);
 
-    this.personneService.createPersonne(this.personneACreer).subscribe(
+    this.personneService.create(this.personneACreer).subscribe(
       id => {
         console.log(`persone créée avec l'id suivant: ${id}`);
         this.personneACreer.id = id;

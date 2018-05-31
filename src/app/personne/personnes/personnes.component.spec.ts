@@ -31,10 +31,10 @@ describe('PersonnesComponent', () => {
   it('should save a person', async( () => {
     const idTest: number = 50;
     const personnesLength = component.personnes.length;
-    spyOn(component['personneService'], 'createPersonne').and.returnValue(of(idTest));
+    spyOn(component['personneService'], 'create').and.returnValue(of(idTest));
     component.personneACreer = personneTest;
     component.onSubmit();
-    expect(component['personneService'].createPersonne).toHaveBeenCalledWith(personneTest);
+    expect(component['personneService'].create).toHaveBeenCalledWith(personneTest);
     expect(component.personneACreer.id).toEqual(50);
     expect(component.personnes.length).toEqual(personnesLength + 1);
   }));

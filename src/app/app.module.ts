@@ -10,7 +10,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatFormField,
-  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSidenavModule
+  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSidenavModule, MatDividerModule, MatListModule
 } from '@angular/material'
 import { PersonneInterceptor } from "./interceptors/personne.interceptor";
 import { PersonneModule } from "./personne/personne.module";
@@ -22,6 +22,7 @@ import {FormsModule} from "@angular/forms";
 import { AddRequiredDirective } from './directives/add-required.directive';
 import {environment} from "../environments/environment";
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 const ROUTES: Routes = [
   { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
@@ -40,7 +41,8 @@ export const isProdToken = new InjectionToken('is_prod', {
     SettingsComponent,
     AddRequiredDirective,
     InputColor2Directive,
-    ErrorPageComponent
+    ErrorPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,9 @@ export const isProdToken = new InjectionToken('is_prod', {
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule
   ],
   bootstrap: [AppComponent]
 })

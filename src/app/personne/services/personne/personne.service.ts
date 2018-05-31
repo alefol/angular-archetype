@@ -15,7 +15,7 @@ export class PersonneService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllPersonnes(): Observable<PersonneEntity[]> {
+  public getAll(): Observable<PersonneEntity[]> {
     return this.http.get<PersonneInterface[]>(environment.backend + this.urlApi)
       .pipe(
         map(personnesFactory),
@@ -25,7 +25,7 @@ export class PersonneService {
       );
   }
 
-  public createPersonne(personne: PersonneEntity): Observable<number> {
+  public create(personne: PersonneEntity): Observable<number> {
     return this.http.post<number>(environment.backend + this.urlApi, personne);
   }
 
