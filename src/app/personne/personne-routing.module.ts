@@ -8,7 +8,7 @@ import { IsAuthenticatedGuard } from "./guards/is-authenticated.guard";
 
 const ROUTES: Routes = [
   { path: '', component: PersonnesComponent, canActivate: [IsAuthenticatedGuard] },
-  { path: ':id', component: PersonneDetailsComponent, canActivate: [IsAuthenticatedGuard], resolve: {maPersonne: PersonneResolver}}
+  { path: ':id', component: PersonneDetailsComponent, canActivate: [IsAuthenticatedGuard, CanViewDetailGuard], resolve: {maPersonne: PersonneResolver}}
 ];
 
 @NgModule({

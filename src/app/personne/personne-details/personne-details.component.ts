@@ -16,6 +16,7 @@ export class PersonneDetailsComponent implements OnInit {
   constructor(private personneService: PersonneService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log("personne details onInit()");
     // const id: string = this.route.snapshot.paramMap.get('id');
     // this.route.params
     //   .pipe(
@@ -31,6 +32,7 @@ export class PersonneDetailsComponent implements OnInit {
     //       personne => this.personne = personne
     //     );
     // }
+
     this.personne = this.route.snapshot.data['maPersonne'];
   }
 

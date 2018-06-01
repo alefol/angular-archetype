@@ -1,22 +1,26 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
 import { UserService } from './services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styles: []
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
   subscriptions: Subscription[] = [];
+
+  isLoggedIn$: Observable<boolean>;
 
   constructor(private router: Router, private userservice: UserService) {
 
   }
 
   ngOnInit(): void {
+    this.isLoggedIn$ = this.userservice.isAuthenticated();
     this.subscriptions.push(
       this.router.events.subscribe(
         event => {

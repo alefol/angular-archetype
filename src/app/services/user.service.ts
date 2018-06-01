@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from "../entities/user.model";
 import { Observable, of } from "rxjs"
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,11 @@ export class UserService {
   ];
 
   constructor() {
+ /*   this.user = {
+      nom: "Cédric",
+      password: "pswd",
+      isAdmin: false
+    }*/
   }
 
   public authenticate(login: string, mdp: string): Observable<UserModel>{
@@ -31,7 +37,8 @@ export class UserService {
   }
 
   public isAuthenticated(): Observable<boolean>{
-    return of(this.user != null);
+    console.log("is auth "+this.user);
+    return of(this.user != undefined && this.user != null);
   }
 
   public disconnect(){
