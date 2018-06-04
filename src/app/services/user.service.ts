@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { UserModel } from "../entities/user.model";
-import { Observable, of } from "rxjs"
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Observable, of, Observer, Subject, throwError } from "rxjs"
+import { ErrorModel } from '../entities/error.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,26 +23,35 @@ export class UserService {
     }
   ];
 
+  private isAuthObservable: Observable<boolean>;
+  private isAuthSubject: Subject<boolean>;
+
   constructor() {
- /*   this.user = {
-      nom: "Cédric",
-      password: "pswd",
-      isAdmin: false
-    }*/
+    this.isAuthSubject = new Subject();
   }
 
   public authenticate(login: string, mdp: string): Observable<UserModel>{
     this.user = this.users.find( (user) => user.nom == login && user.password == mdp);
+    if(this.user){
+      this.isAuthSubject.next(true);
+    } else {
+      return throwError(new ErrorModel(500, "échec de l'authentification, login ou mot de passe incorrecte"));
+    }
     return of(this.user);
   }
 
   public isAuthenticated(): Observable<boolean>{
-    console.log("is auth "+this.user);
-    return of(this.user != undefined && this.user != null);
+    let auth = this.user != undefined && this.user != null;
+    if(this.user == undefined || this.user == null){
+      return this.isAuthSubject;
+    }
+    return of(true);
   }
+  
 
   public disconnect(){
     this.user = null;
+    this.isAuthSubject.next(false);
     return of(true);
   }
 

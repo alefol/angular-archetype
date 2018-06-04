@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {PersonneEntity, PersonneInterface, personneFactory, personnesFactory} from 'src/app/entities/personne';
@@ -9,8 +9,11 @@ import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PersonneService {
+export class PersonneService implements OnDestroy {
 
+  ngOnDestroy(): void {
+    throw new Error("Method not implemented.");
+  }
   private readonly urlApi : string = "personne";
 
   constructor(private http: HttpClient) { }

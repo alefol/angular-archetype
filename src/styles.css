@@ -4,6 +4,18 @@
 body {
     margin: 0;
 }
+
+.error-container {
+    color: red;
+    padding: 15px; 
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%
+}
+
 .example-fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
        Every toolbar row uses a flexbox row layout. */
