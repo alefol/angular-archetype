@@ -1,4 +1,13 @@
-<p>
-  personne-details works!
-  <app-personne [personne]="personne"></app-personne>
-</p>
+   <!-- <app-personne [personne]="personne"></app-personne> -->
+<mat-card class="personne-details-container">
+  <mat-card-header>
+    <mat-card-title>{{ personne.email }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Nom :</strong>{{ personne.nom }}</p>
+    <p><strong>Prénom :</strong>{{ personne.prenom }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-button [routerLink]="['../']">retour</button>
+  </mat-card-actions>
+</mat-card>

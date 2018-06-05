@@ -10,7 +10,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatFormField,
-  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSidenavModule, MatDividerModule, MatListModule, MatProgressSpinnerModule
+  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSidenavModule, MatDividerModule, MatListModule, MatProgressSpinnerModule, MatCardModule
 } from '@angular/material'
 import { PersonneInterceptor } from "./interceptors/personne.interceptor";
 import { PersonneModule } from "./personne/personne.module";
@@ -60,7 +60,8 @@ export const isProdToken = new InjectionToken('is_prod', {
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   bootstrap: [AppComponent]
 })

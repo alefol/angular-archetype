@@ -8,6 +8,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatCardModule,
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgModule} from "@angular/core";
@@ -37,7 +38,8 @@ import { PersonneRoutingModule } from "./personne-routing.module";
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    PersonneRoutingModule
+    PersonneRoutingModule,
+    MatCardModule
   ],
   providers: [
     PersonneService,
