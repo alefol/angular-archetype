@@ -23,6 +23,7 @@ import { AddRequiredDirective } from './directives/add-required.directive';
 import {environment} from "../environments/environment";
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 
 const ROUTES: Routes = [
   { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
@@ -62,6 +63,9 @@ export const isProdToken = new InjectionToken('is_prod', {
     MatDividerModule,
     MatProgressSpinnerModule,
     MatCardModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
