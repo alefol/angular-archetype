@@ -5,12 +5,14 @@ import {HomeComponent} from "./components/home/home.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
 
 
 const ROUTES: Routes = [
     { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
     { path: 'settings', component: SettingsComponent },
     { path: 'login', component: LoginPageComponent },
+    { path: 'signup', component: SignupPageComponent },
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: '**', component: ErrorPageComponent }
   ];

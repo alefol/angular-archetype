@@ -24,6 +24,7 @@ import {environment} from "../environments/environment";
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
 
 const ROUTES: Routes = [
   { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
@@ -43,7 +44,8 @@ export const isProdToken = new InjectionToken('is_prod', {
     AddRequiredDirective,
     InputColor2Directive,
     ErrorPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,

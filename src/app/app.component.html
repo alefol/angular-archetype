@@ -17,6 +17,7 @@
                         <button *ngIf="isLoggedIn$ | async" mat-button class="toolbar-link" [routerLink]="['personnes']">personnes</button>
                         <span class="example-fill-remaining-space"></span>
                         <button *ngIf="!(isLoggedIn$ | async)" mat-button class="toolbar-link" [routerLink]="['login']">se connecter</button>
+                        <button *ngIf="!(isLoggedIn$ | async)" mat-button class="toolbar-link" [routerLink]="['signup']">s'inscrire</button>                        
                         <button *ngIf="isLoggedIn$ | async" mat-icon-button [matMenuTriggerFor]="appMenu">
                                 <mat-icon>more_vert</mat-icon>
                         </button>

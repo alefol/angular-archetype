@@ -1,0 +1,24 @@
+  <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="vertical-form">
+    <mat-form-field>
+      <input matInput type="email" placeholder="example@mail.fr" name="email" [(ngModel)]="personne.email" #email="ngModel" required email />
+      <mat-error *ngIf="email.hasError('required')">
+          Champs requis
+      </mat-error>
+      <mat-error *ngIf="email.hasError('email')">
+          Veuillez entrer une adresse email valide
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="name" name="name" [(ngModel)]="personne.nom" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="firstname" name="firstname" [(ngModel)]="personne.prenom" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="password" name="password" [(ngModel)]="personne.password" required />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="password" name="passwordRetyped" [(ngModel)]="passwordRetyped" required />
+    </mat-form-field>
+    <button mat-button color="primary" type="submit" [disabled]="!signupForm.valid">Submit</button>
+  </form>
