@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import {PersonneModule} from "../personne.module";
 import {UserService} from "../../services/user.service";
 import {map} from "rxjs/operators";
+import { UserServiceMock } from '../../services/user.service.mock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanViewDetailGuard implements CanActivate {
-  constructor(private userService: UserService){
+  constructor(private userService: UserServiceMock){
 
   }
 

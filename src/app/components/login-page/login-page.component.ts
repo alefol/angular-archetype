@@ -22,10 +22,10 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
     console.log(this.user);
-    this.userService.authenticate(this.user.nom, this.user.password).subscribe(
+    this.userService.authenticate(this.user.email, this.user.password).subscribe(
       (user) => {
         console.log(user);
-        this.router.navigate(['/personnes']);
+       // this.router.navigate(['/personnes']);
       },
       err => {
         console.log(err);
