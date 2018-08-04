@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
     this.userService.authenticate(this.user.email, this.user.password).subscribe(
       (user) => {
         console.log(user);
-       // this.router.navigate(['/personnes']);
+        this.router.navigate(['/personnes']);
       },
       err => {
         console.log(err);

@@ -7,6 +7,7 @@ import { PersonneEntity } from '../entities/personne';
 import { environment } from '../../environments/environment.prod';
 import { tokenKey } from '@angular/core/src/view';
 import { tap, map } from 'rxjs/operators';
+import { Token } from 'src/app/entities/token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +23,14 @@ export class UserService {
   }
 
   public authenticate(login: string, mdp: string) {
-     return this.http.post(`${environment.backend}${this.urlApi}/login`, {login: login, password: mdp}, {responseType: 'text' as 'text'})
+     return this.http.post<Token>(`${environment.backend}${this.urlApi}/login`, {login: login, password: mdp}/*, {responseType: 'text' as 'text'}*/)
         .pipe(
           tap(res => this.setSession(res))
         );
   }
 
-  private setSession(jwtToken: string){
-    localStorage.setItem(this.tokenKey, jwtToken);
+  private setSession(jwtToken: Token){
+    localStorage.setItem(this.tokenKey, jwtToken.token);
   }
 
   public isAuthenticated(): Observable<boolean> {
