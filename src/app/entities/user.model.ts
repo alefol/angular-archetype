@@ -1,13 +1,14 @@
 export interface UserModel {
-  nom: string,
+  email: string,
   password: string,
   isAdmin: boolean
 }
 
 export class UserModel implements UserModel {
 
-  constructor(nom?: string, isAdmin?: boolean){
-    this.nom = nom || '';
+  constructor(email?: string, password?: string, isAdmin?: boolean){
+    this.email = email || '';
+    this.password = password || '';
     this.isAdmin = isAdmin || false;
   }
 }

@@ -13,12 +13,7 @@ export class PersonneInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.includes('/personnes')) {
-      const request = req.clone({
-        setHeaders: {
-          'test': 'plop'
-        }
-      });
-      return next.handle(request)
+      return next.handle(req)
         .pipe(
           catchError((err: HttpErrorResponse) => {
               if (err.status === 500) {

@@ -25,7 +25,6 @@ export class InputColorDirective implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    console.log("Hello directive InputColorDirective");
     this.originColor = this.el.nativeElement.style.backgroundColor;
   }
 

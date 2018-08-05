@@ -32,11 +32,9 @@ export class AppComponent implements OnInit, OnDestroy {
         event => {
           if(event instanceof  NavigationStart){
             this.isLoading = true;
-            console.log("navigation starts");
           }
           else if(event instanceof NavigationEnd) {
             this.isLoading = false;
-            console.log("navigation ends");
           }
         }
       )
