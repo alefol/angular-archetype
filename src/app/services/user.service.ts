@@ -15,11 +15,13 @@ import { Token } from 'src/app/entities/token.model';
 export class UserService {
 
   private user: UserModel;
+  private authenticated: Subject<boolean>;
 
   private readonly urlApi : string = "auth";
   private readonly tokenKey: string = "jwtToken"
 
   constructor(private http: HttpClient) {
+    this.authenticated = new Subject<boolean>();
   }
 
   public authenticate(login: string, mdp: string) {
@@ -31,10 +33,15 @@ export class UserService {
 
   private setSession(jwtToken: Token){
     localStorage.setItem(this.tokenKey, jwtToken.token);
+    this.authenticated.next(true);
   }
 
   public isAuthenticated(): Observable<boolean> {
     return of(localStorage.getItem(this.tokenKey)!=null);
+  }
+
+  public getAuthentication(): Observable<boolean>{
+    return this.authenticated
   }
 
   public inscription(personne: PersonneEntity): Observable<number> {
@@ -43,6 +50,7 @@ export class UserService {
 
   public disconnect(): Observable<boolean>{
     localStorage.removeItem(this.tokenKey);
+    this.authenticated.next(false);
     return of(true);
   }
 }

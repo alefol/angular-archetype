@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
       err => console.log("is authenticated error"),
       () => console.log("is authenticated complete")
     );*/
-    this.isLoggedIn$ = this.userservice.isAuthenticated();
+    this.isLoggedIn$ = this.userservice.getAuthentication();
     this.subscriptions.push(
       this.router.events.subscribe(
         event => {
