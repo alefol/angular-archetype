@@ -1,4 +1,4 @@
-<div class="error-container" *ngIf="error">{{ error.msg }}</div>
+<div class="error-container" *ngIf="error">échec de l'authentification nom d'utilisateur ou mot de passe incorrect</div>
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
   <mat-form-field class="login-form-input">
     <input matInput 

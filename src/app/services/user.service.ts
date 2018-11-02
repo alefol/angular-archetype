@@ -14,7 +14,6 @@ import { Token } from 'src/app/entities/token.model';
 })
 export class UserService {
 
-  private user: UserModel;
   private authenticated: Subject<boolean>;
 
   private readonly urlApi : string = "auth";
@@ -36,8 +35,8 @@ export class UserService {
     this.authenticated.next(true);
   }
 
-  public isAuthenticated(): Observable<boolean> {
-    return of(localStorage.getItem(this.tokenKey)!=null);
+  public isAuthenticated(): boolean {
+    return localStorage.getItem(this.tokenKey)!=null;
   }
 
   public getAuthentication(): Observable<boolean>{
