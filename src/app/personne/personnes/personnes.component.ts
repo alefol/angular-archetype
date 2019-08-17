@@ -27,13 +27,6 @@ export class PersonnesComponent implements OnInit {
 
   inputSearch: string;
 
-  @ViewChild(PersonneComponent)
-  appPersonneComponent: PersonneComponent;
-
-
-  @ViewChildren(PersonneComponent)
-  appPersonneComponents: PersonneComponent[];
-
   nomCtrl: FormControl;
   prenomCtrl: FormControl;
   mailCtrl: FormControl;
@@ -83,9 +76,6 @@ export class PersonnesComponent implements OnInit {
         this.personnes.push(this.personneACreer);
       }
     );
-
-    console.log('this.appPersonneComponent = ', this.appPersonneComponent);
-    console.log('this.appPersonneComponents = ', this.appPersonneComponents);
   }
 
 

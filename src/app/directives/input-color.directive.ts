@@ -1,4 +1,3 @@
-///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {AfterViewInit, Directive, ElementRef, HostBinding, HostListener, Input} from '@angular/core';
 
 @Directive({

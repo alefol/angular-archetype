@@ -1,6 +1,3 @@
-///<reference path="../../../node_modules/@angular/platform-browser/src/browser.d.ts"/>
-///<reference path="../../../node_modules/@angular/router/src/router_module.d.ts"/>
-
 import {PersonneComponent} from "./personne/personne.component";
 import {PersonnesComponent} from "./personnes/personnes.component";
 import {
