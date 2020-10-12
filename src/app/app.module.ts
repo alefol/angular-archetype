@@ -4,32 +4,29 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatToolbarModule,
-  MatMenuModule,
-  MatIconModule,
-  MatFormField,
-  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSidenavModule, MatDividerModule, MatListModule, MatProgressSpinnerModule, MatCardModule
-} from '@angular/material'
-import { PersonneInterceptor } from "./interceptors/personne.interceptor";
-import { PersonneModule } from "./personne/personne.module";
-import { HomeComponent } from './components/home/home.component';
-import {RouterModule, Routes} from "@angular/router";
-import {InputColor2Directive, InputColorDirective} from './directives/input-color.directive';
-import { SettingsComponent } from './components/settings/settings.component';
-import {FormsModule} from "@angular/forms";
-import { AddRequiredDirective } from './directives/add-required.directive';
-import {environment} from "../environments/environment";
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
-import { SignupPageComponent } from './components/signup-page/signup-page.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HomeComponent } from './pages/home/home.component';
+import {InputColor2Directive} from './shared/directives/input-color.directive';
+import { SettingsComponent } from './pages/settings/settings.component';
+import {FormsModule} from '@angular/forms';
+import { AddRequiredDirective } from './shared/directives/add-required.directive';
+import {environment} from '../environments/environment';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { AuthenticationInterceptor } from './shared/interceptors/authentication.interceptor';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 
-const ROUTES: Routes = [
-  { path: 'personnes', loadChildren: './personne/personne.module#PersonneModule' },
-  { path: '', component: HomeComponent, pathMatch: 'full' }
-];
 
 export const isProdToken = new InjectionToken('is_prod', {
   providedIn: 'root',
@@ -54,8 +51,8 @@ export const isProdToken = new InjectionToken('is_prod', {
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatToolbarModule,
     MatMenuModule,
+    MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,

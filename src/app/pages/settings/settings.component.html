@@ -1,0 +1,20 @@
+<form (ngSubmit)="saveUser()" #personneForm="ngForm">
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="email"
+      name="email"
+      [(ngModel)]="user.email"
+      #nomCtrl="ngModel"
+      required
+    />
+    <mat-error *ngIf="nomCtrl.hasError('required')">
+      nom requis
+    </mat-error>
+  </mat-form-field>
+  <section>
+    <mat-checkbox [(ngModel)]="user.isAdmin" [ngModelOptions]="{standalone: true}">is admin</mat-checkbox>
+  </section>
+  <button mat-button color="primary" type="submit" [disabled]="!personneForm.valid">save</button>
+</form>
